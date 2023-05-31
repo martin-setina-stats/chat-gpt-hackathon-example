@@ -2,8 +2,8 @@ const {
   Configuration,
   OpenAIApi,
   CreateChatCompletionRequest,
-  ChatCompletionRequestMessageRoleEnum
-} = require('openai');
+  ChatCompletionRequestMessageRoleEnum,
+} = require("openai");
 
 console.log(process.env.OPEN_API_KEY);
 
@@ -63,55 +63,39 @@ DM for purchase. Check all available items at #komorebi_available
 Payment by bank transfer/Revolut. No trying on. No returns. Pick up in the center of Prague is possible (hotel Mosaic, Karlove namesti/metro Krizikova).
 EU shipping available, for pricing contact me via dm."""
 `;
-// 
-
-// const text = ``;
-
-// const prompt = `
-//   const item = {
-//   brand: 'Levis',
-//   type: 'jeans',
-//   color: 'blue',
-//   size_description: '32 waist, 32 length',
-//   flaws: ['small stain crotch'],
-//   price: 20, // in Euros
-//   currency: 'EUR',
-//   material: ['100% denim'],
-//   condition: 'good',
-//   additional_info: 'regular fit',
-//   }
-// `;
 
 const handler = async (prompt) => {
   const config = new Configuration({
-    apiKey: process.env.OPEN_API_KEY
+    apiKey: process.env.OPEN_API_KEY,
   });
 
   const openai = new OpenAIApi(config);
   const messages = [
     {
       role: ChatCompletionRequestMessageRoleEnum.System,
-      content: systemMessage
+      content: systemMessage,
     },
     {
       role: ChatCompletionRequestMessageRoleEnum.User,
-      content: JSON.stringify(prompt)
-    }
+      content: JSON.stringify(prompt),
+    },
   ];
   try {
     const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
+      model: "gpt-3.5-turbo",
       temperature: 0.6,
-      messages
+      messages,
     });
     const message = response.data.choices[0].message;
-    console.log('message', message);
+    console.log("message", message);
     return message;
   } catch (error) {
     if (error.response) {
       console.log(error.response.status);
       console.log(error.response.data);
-      throw new Error(`${error.response.status}: ${JSON.stringify(error.response.data)}`);
+      throw new Error(
+        `${error.response.status}: ${JSON.stringify(error.response.data)}`
+      );
     } else {
       console.log(error.message);
       throw new Error(error.message);
