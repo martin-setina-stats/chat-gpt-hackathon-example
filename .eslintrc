@@ -1,0 +1,7 @@
+{
+  "extends": ["@eng/eslint-config"],
+  "ignorePatterns": ["dist/**", "coverage/**"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

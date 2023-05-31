@@ -1,0 +1,15 @@
+group: eng
+name: eng-npm-ts-template
+
+pipeline:
+  type: npm
+
+release:
+  type: npm
+
+parameters:
+  sourceDirs: 'src'
+  buildOutDir: 'lib'
+  jiraProject: 'as'
+  nodeVersion: '18-bullseye'
+  testsFolder: 'src'
