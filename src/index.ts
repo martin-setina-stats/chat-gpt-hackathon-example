@@ -17,14 +17,15 @@ const handler = new ConsoleCallbackHandler();
 // const docs1 = await loader.load();
 // console.log(docs1);
 
-const model = new OpenAI({temperature: 0});
+const model = new OpenAI({temperature: 0, modelName: 'gpt-3.5-turbo'});
 
-const docs = eventBatch.map((event: any) => {
-  return new Document({
-    pageContent: JSON.stringify(event),
-    metadata: {id: event.frame.videoTimeMs, videoTimeMs: event.frame.videoTimeMs, source: event.frame.videoTimeMs}
-  });
-});
+const docs = eventBatch.map(
+  (event: any) =>
+    new Document({
+      pageContent: JSON.stringify(event),
+      metadata: {id: event.frame.videoTimeMs, videoTimeMs: event.frame.videoTimeMs, source: event.frame.videoTimeMs}
+    })
+);
 const vectorStore = await MemoryVectorStore.fromDocuments(docs, new OpenAIEmbeddings());
 // const documents = await vectorStore.similaritySearch('"videoTimeMs":7126741');
 // console.log(documents);
