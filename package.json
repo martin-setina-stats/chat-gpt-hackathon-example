@@ -14,7 +14,7 @@
     "lint:read": "node -p \"require('./node_modules/eslint/lib/cli-engine/formatters/unix.js')(require('./' + process.argv.slice(1)[0]))\"",
     "prettier": "npx prettier --write ./src",
     "sonar": "sonar",
-    "dev": "node --watch --loader ts-node/esm --experimental-specifier-resolution node src"
+    "dev": "node --loader ts-node/esm --experimental-specifier-resolution node src"
   },
   "devDependencies": {
     "@as/prettier-config": "^1.0.1",
