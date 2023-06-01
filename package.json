@@ -52,6 +52,7 @@
   "prettier": "@as/prettier-config",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.342.0",
+    "chromadb": "^1.5.1",
     "dotenv": "^16.1.2",
     "langchain": "^0.0.86"
   }
